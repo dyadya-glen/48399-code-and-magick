@@ -30,7 +30,7 @@ function drawRectangle (ctx, x, y, width, height) {
   ctx.fill ();
 };
 
-function histogramRender (ctx, names, times) {
+function renderHistogram (ctx, names, times) {
   var maxTtime =  Math.max.apply(Math, times);
 
   for (var i = 0 ; i < times.length; i++) {
@@ -51,12 +51,17 @@ function histogramRender (ctx, names, times) {
     if (name === 'Вы') {
       ctx.fillStyle = '#f00';
     } else {
-      ctx.fillStyle = 'rgba(0, 0,'  + (Math.random() * 5).toFixed(0) * 50 +  ',' + Math.random() + ')';
+      ctx.fillStyle = 'rgba(0, 0,'
+       + (Math.random() * 5).toFixed(0) * 50
+       +  ',' + Math.random()
+       + ')';
     }
 
     ctx.fillRect (
       histogramX + i * (histogramWidth + columnIndent),
-      100 + histogramHeight, histogramWidth, -height
+      100 + histogramHeight,
+      histogramWidth,
+      -height
     );
 
     ctx.fillStyle = '#000';
@@ -83,5 +88,5 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText ('Ура вы победили!', 120, 40);
   ctx.fillText ('Список результатов:', 120, 60);
 
-  histogramRender (ctx, names, times);
+  renderHistogram (ctx, names, times);
 };
