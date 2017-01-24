@@ -31,16 +31,16 @@ function drawRectangle(ctx, x, y, width, height) {
 }
 
 function renderHistogram(ctx, names, times) {
-  var maxTtime = Math.max.apply(Math, times);
+  var maxTime = Math.max.apply(null, times);
+  var histogramHeight = 150;
+  var histogramWidth = 40;
+  var histogramX = 155;
+  var columnIndent = 50;
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
     var name = names[i];
-    var histogramHeight = 150;
-    var histogramWidth = 40;
-    var histogramX = 155;
-    var columnIndent = 50;
-    var height = histogramHeight / maxTtime * time;
+    var height = histogramHeight / maxTime * time;
 
     ctx.fillText(
         time.toFixed(0),
@@ -48,14 +48,8 @@ function renderHistogram(ctx, names, times) {
         histogramHeight + 90 - height
     );
 
-    if (name === 'Вы') {
-      ctx.fillStyle = '#f00';
-    } else {
-      ctx.fillStyle = 'rgba(0, 0,'
-       + (Math.random() * 5).toFixed(0) * 50
-       + ',' + Math.random()
-       + ')';
-    }
+    ctx.fillStyle = (name === 'Вы') ? '#f00' :
+        'rgba(0, 0,' + (Math.random() * 5).toFixed(0) * 50 + ',' + Math.random() + ')';
 
     ctx.fillRect(
         histogramX + i * (histogramWidth + columnIndent),
