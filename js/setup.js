@@ -7,7 +7,7 @@ var userName = setupWizard.querySelector('.setup-user-name');
 var wizardCoat = document.getElementById('wizard-coat');
 var wizardEyes = document.getElementById('wizard-eyes');
 var setupFireball = setupWizard.querySelector('.setup-fireball-wrap');
-var IndexColor = 0;
+var indexColor = 0;
 var wizardCoatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
@@ -33,6 +33,8 @@ var fireballColors = [
   '#e6e848'
 ];
 
+userName.required = true;
+userName.maxLength = 50;
 
 setupOpenWizard.addEventListener('click', function () {
   setupWizard.classList.remove('invisible');
@@ -42,28 +44,31 @@ setupCloseWizard.addEventListener('click', function () {
   setupWizard.classList.add('invisible');
 });
 
-userName.required = true;
-userName.maxLength = 50;
+wizardCoat.addEventListener('click', choiceOfColorCoat);
 
-wizardCoat.addEventListener('click', function () {
-  var NextIndexColor = ++IndexColor;
-  if (!wizardCoatColors[NextIndexColor]) {
-    NextIndexColor = 0;
+wizardEyes.addEventListener('click', choiceOfColorEyes);
+
+setupFireball.addEventListener('click', choiceOfColorFireball);
+
+function choiceOfColorCoat() {
+  var nextIndexColor = ++indexColor;
+  if (!wizardCoatColors[nextIndexColor]) {
+    nextIndexColor = 0;
   }
-  wizardCoat.style.fill = wizardCoatColors[NextIndexColor];
-  IndexColor = NextIndexColor;
-});
+  wizardCoat.style.fill = wizardCoatColors[nextIndexColor];
+  indexColor = nextIndexColor;
+}
 
-wizardEyes.addEventListener('click', function () {
-  var NextIndexColor = ++IndexColor;
-  if (!wizardEyesColors[NextIndexColor]) {
-    NextIndexColor = 0;
+function choiceOfColorEyes() {
+  var nextIndexColor = ++indexColor;
+  if (!wizardEyesColors[nextIndexColor]) {
+    nextIndexColor = 0;
   }
-  wizardEyes.style.fill = wizardEyesColors[NextIndexColor];
-  IndexColor = NextIndexColor;
-});
+  wizardEyes.style.fill = wizardEyesColors[nextIndexColor];
+  indexColor = nextIndexColor;
+}
 
-setupFireball.addEventListener('click', function () {
+function choiceOfColorFireball() {
   var colorIndex = Math.floor(Math.random() * fireballColors.length);
   setupFireball.style.backgroundColor = fireballColors[colorIndex];
-});
+}
