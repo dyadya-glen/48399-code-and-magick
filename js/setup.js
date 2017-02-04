@@ -52,7 +52,8 @@ setupCloseWizard.addEventListener('keydown', onPressHideSetupWizard);
 wizardCoat.addEventListener('click', onChoiceOfColorCoat);
 wizardEyes.addEventListener('click', onChoiceOfColorEyes);
 setupFireball.addEventListener('click', onChoiceOfColorFireball);
-setupSubmit.addEventListener('click', onHideSetupWizard);
+setupSubmit.addEventListener('click', onSaveSetupWizard);
+setupSubmit.addEventListener('keydown', onPressSaveSetupWizard);
 
 function onFocusSetupOpenIcon() {
   setupOpenIcon.setAttribute('aria-pressed', true);
@@ -87,8 +88,7 @@ function onShowSetupWizard(event) {
   document.addEventListener('keydown', setupKeydownHendler);
 }
 
-function onHideSetupWizard(event) {
-  event.preventDefault();
+function onHideSetupWizard() {
   setupWizard.classList.add('invisible');
   setupWizard.setAttribute('aria-hidden', true);
   document.removeEventListener('keydown', setupKeydownHendler);
@@ -101,6 +101,18 @@ function onPressShowSetupWizard(event) {
 }
 
 function onPressHideSetupWizard(event) {
+  if (isActivateEvent(event)) {
+    onHideSetupWizard();
+  }
+}
+
+function onSaveSetupWizard(event) {
+  event.preventDefault();
+  onHideSetupWizard();
+}
+
+function onPressSaveSetupWizard(event) {
+  event.preventDefault();
   if (isActivateEvent(event)) {
     onHideSetupWizard();
   }
