@@ -8,7 +8,6 @@ var wizardCoat = document.getElementById('wizard-coat');
 var wizardEyes = document.getElementById('wizard-eyes');
 var setupFireball = setupWizard.querySelector('.setup-fireball-wrap');
 var setupSubmit = setupWizard.querySelector('.setup-submit');
-var indexColor = 0;
 var wizardCoatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
@@ -40,13 +39,14 @@ var ESCAPE_KEY_CODE = 27;
 userName.required = true;
 userName.maxLength = 50;
 
+window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
+window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
+window.colorizeElement(setupFireball, fireballColors, 'backgroundColor');
+
 setupOpenWizard.addEventListener('click', onShowSetupWizard);
 setupOpenWizard.addEventListener('keydown', onPressShowSetupWizard);
 setupCloseWizard.addEventListener('click', onHideSetupWizard);
 setupCloseWizard.addEventListener('keydown', onPressHideSetupWizard);
-wizardCoat.addEventListener('click', onChoiceCoatColor);
-wizardEyes.addEventListener('click', onChangesEyesColor);
-setupFireball.addEventListener('click', onChoiceOfColorFireball);
 setupSubmit.addEventListener('click', onSaveSetupWizard);
 setupSubmit.addEventListener('keydown', onPressSaveSetupWizard);
 
@@ -96,27 +96,4 @@ function onPressSaveSetupWizard(event) {
   if (isActivateEvent(event)) {
     onHideSetupWizard();
   }
-}
-
-function onChoiceCoatColor() {
-  var nextIndexColor = ++indexColor;
-  if (!wizardCoatColors[nextIndexColor]) {
-    nextIndexColor = 0;
-  }
-  wizardCoat.style.fill = wizardCoatColors[nextIndexColor];
-  indexColor = nextIndexColor;
-}
-
-function onChangesEyesColor() {
-  var nextIndexColor = ++indexColor;
-  if (!wizardEyesColors[nextIndexColor]) {
-    nextIndexColor = 0;
-  }
-  wizardEyes.style.fill = wizardEyesColors[nextIndexColor];
-  indexColor = nextIndexColor;
-}
-
-function onChoiceOfColorFireball() {
-  var colorIndex = Math.floor(Math.random() * fireballColors.length);
-  setupFireball.style.backgroundColor = fireballColors[colorIndex];
 }
