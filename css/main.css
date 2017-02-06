@@ -558,6 +558,11 @@ input[type=radio]:checked + .review-mark-label {
   z-index: 3;
 }
 
+.setup-open:focus .setup-open-icon{
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+  outline: inherit;
+}
+
 .setup-open-icon {
   position: absolute;
   top: 100px;
@@ -568,7 +573,7 @@ input[type=radio]:checked + .review-mark-label {
   z-index: 2;
 }
 
-.setup-open-icon:hover, .setup-open-icon:focus {
+.setup-open-icon:hover {
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 

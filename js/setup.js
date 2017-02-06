@@ -2,7 +2,6 @@
 
 var setupWizard = document.querySelector('.setup');
 var setupOpenWizard = document.querySelector('.setup-open');
-var setupOpenIcon = setupOpenWizard.querySelector('.setup-open-icon');
 var setupCloseWizard = setupWizard.querySelector('.setup-close');
 var userName = setupWizard.querySelector('.setup-user-name');
 var wizardCoat = document.getElementById('wizard-coat');
@@ -41,12 +40,9 @@ var ESCAPE_KEY_CODE = 27;
 userName.required = true;
 userName.maxLength = 50;
 
-setupOpenIcon.addEventListener('focus', onFocusSetupOpenIcon);
-setupOpenIcon.addEventListener('blur', onBlurSetupOpenIcon);
-setupCloseWizard.addEventListener('focus', onFocusSetupCloseWizard);
-setupCloseWizard.addEventListener('blur', onBlurSetupCloseWizard);
 setupOpenWizard.addEventListener('click', onShowSetupWizard);
 setupOpenWizard.addEventListener('keydown', onPressShowSetupWizard);
+setupOpenWizard.addEventListener('keyup', onKeyupPressShowSetupWizard);
 setupCloseWizard.addEventListener('click', onHideSetupWizard);
 setupCloseWizard.addEventListener('keydown', onPressHideSetupWizard);
 wizardCoat.addEventListener('click', onChoiceOfColorCoat);
@@ -54,22 +50,6 @@ wizardEyes.addEventListener('click', onChoiceOfColorEyes);
 setupFireball.addEventListener('click', onChoiceOfColorFireball);
 setupSubmit.addEventListener('click', onSaveSetupWizard);
 setupSubmit.addEventListener('keydown', onPressSaveSetupWizard);
-
-function onFocusSetupOpenIcon() {
-  setupOpenIcon.setAttribute('aria-pressed', true);
-}
-
-function onBlurSetupOpenIcon() {
-  setupOpenIcon.setAttribute('aria-pressed', false);
-}
-
-function onFocusSetupCloseWizard() {
-  setupCloseWizard.setAttribute('aria-pressed', true);
-}
-
-function onBlurSetupCloseWizard() {
-  setupCloseWizard.setAttribute('aria-pressed', false);
-}
 
 function isActivateEvent(event) {
   return event.keyCode && event.keyCode === ENTER_KEY_CODE;
@@ -85,6 +65,7 @@ function setupKeydownHendler(event) {
 function onShowSetupWizard(event) {
   setupWizard.classList.remove('invisible');
   setupWizard.setAttribute('aria-hidden', false);
+  setupCloseWizard.setAttribute('aria-pressed', false);
   document.addEventListener('keydown', setupKeydownHendler);
 }
 
@@ -97,12 +78,20 @@ function onHideSetupWizard() {
 function onPressShowSetupWizard(event) {
   if (isActivateEvent(event)) {
     onShowSetupWizard(event);
+    setupOpenWizard.setAttribute('aria-pressed', true);
+  }
+}
+
+function onKeyupPressShowSetupWizard(event) {
+  if (isActivateEvent(event)) {
+    setupOpenWizard.setAttribute('aria-pressed', false);
   }
 }
 
 function onPressHideSetupWizard(event) {
   if (isActivateEvent(event)) {
     onHideSetupWizard();
+    setupCloseWizard.setAttribute('aria-pressed', true);
   }
 }
 
