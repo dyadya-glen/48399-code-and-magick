@@ -42,11 +42,10 @@ userName.maxLength = 50;
 
 setupOpenWizard.addEventListener('click', onShowSetupWizard);
 setupOpenWizard.addEventListener('keydown', onPressShowSetupWizard);
-setupOpenWizard.addEventListener('keyup', onKeyupPressShowSetupWizard);
 setupCloseWizard.addEventListener('click', onHideSetupWizard);
 setupCloseWizard.addEventListener('keydown', onPressHideSetupWizard);
-wizardCoat.addEventListener('click', onChoiceOfColorCoat);
-wizardEyes.addEventListener('click', onChoiceOfColorEyes);
+wizardCoat.addEventListener('click', onChoiceCoatColor);
+wizardEyes.addEventListener('click', onChangesEyesColor);
 setupFireball.addEventListener('click', onChoiceOfColorFireball);
 setupSubmit.addEventListener('click', onSaveSetupWizard);
 setupSubmit.addEventListener('keydown', onPressSaveSetupWizard);
@@ -57,41 +56,33 @@ function isActivateEvent(event) {
 
 function setupKeydownHendler(event) {
   if (event.keyCode === ESCAPE_KEY_CODE) {
-    setupWizard.classList.add('invisible');
-    setupWizard.setAttribute('aria-hidden', true);
+    onHideSetupWizard();
   }
 }
 
 function onShowSetupWizard(event) {
   setupWizard.classList.remove('invisible');
   setupWizard.setAttribute('aria-hidden', false);
-  setupCloseWizard.setAttribute('aria-pressed', false);
+  setupOpenWizard.setAttribute('aria-pressed', true);
   document.addEventListener('keydown', setupKeydownHendler);
 }
 
 function onHideSetupWizard() {
   setupWizard.classList.add('invisible');
   setupWizard.setAttribute('aria-hidden', true);
+  setupOpenWizard.setAttribute('aria-pressed', false);
   document.removeEventListener('keydown', setupKeydownHendler);
 }
 
 function onPressShowSetupWizard(event) {
   if (isActivateEvent(event)) {
     onShowSetupWizard(event);
-    setupOpenWizard.setAttribute('aria-pressed', true);
-  }
-}
-
-function onKeyupPressShowSetupWizard(event) {
-  if (isActivateEvent(event)) {
-    setupOpenWizard.setAttribute('aria-pressed', false);
   }
 }
 
 function onPressHideSetupWizard(event) {
   if (isActivateEvent(event)) {
     onHideSetupWizard();
-    setupCloseWizard.setAttribute('aria-pressed', true);
   }
 }
 
@@ -107,7 +98,7 @@ function onPressSaveSetupWizard(event) {
   }
 }
 
-function onChoiceOfColorCoat() {
+function onChoiceCoatColor() {
   var nextIndexColor = ++indexColor;
   if (!wizardCoatColors[nextIndexColor]) {
     nextIndexColor = 0;
@@ -116,7 +107,7 @@ function onChoiceOfColorCoat() {
   indexColor = nextIndexColor;
 }
 
-function onChoiceOfColorEyes() {
+function onChangesEyesColor() {
   var nextIndexColor = ++indexColor;
   if (!wizardEyesColors[nextIndexColor]) {
     nextIndexColor = 0;
