@@ -1,7 +1,7 @@
 'use strict';
 
 window.colorizeElement = function (element, colors, property) {
-  var currentColor = colors[0];
+  var currentColor = null;
 
   element.addEventListener('click', onСhangeСurrentColor);
   element.addEventListener('keydown', onPressonСhangeСurrentColor);

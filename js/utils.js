@@ -2,13 +2,13 @@
 
 window.utils = {
   getRandomElement: function (colors) {
-    var RoandomElementIndex = Math.floor(Math.random() * colors.length);
-    return colors[RoandomElementIndex];
+    var roandomElementIndex = Math.floor(Math.random() * colors.length);
+    return colors[roandomElementIndex];
   },
 
   getRandomElementExcept: function (colors, currentColor) {
-    var newColor = null;
-    while (!newColor || newColor === currentColor) {
+    var newColor = currentColor;
+    while (newColor === currentColor) {
       newColor = window.utils.getRandomElement(colors);
     }
     return newColor;
