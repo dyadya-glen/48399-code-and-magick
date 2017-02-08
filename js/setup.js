@@ -50,7 +50,7 @@ setupCloseWizard.addEventListener('keydown', onPressHideSetupWizard);
 setupSubmit.addEventListener('click', onSaveSetupWizard);
 setupSubmit.addEventListener('keydown', onPressSaveSetupWizard);
 
-function isActivateEvent(event) {
+function isEnterKey(event) {
   return event.keyCode && event.keyCode === ENTER_KEY_CODE;
 }
 
@@ -83,13 +83,13 @@ function onHideSetupWizard() {
 }
 
 function onPressShowSetupWizard(event) {
-  if (isActivateEvent(event)) {
+  if (isEnterKey(event)) {
     showSetupWizard();
   }
 }
 
 function onPressHideSetupWizard(event) {
-  if (isActivateEvent(event)) {
+  if (isEnterKey(event)) {
     hideSetupWizard();
   }
 }
@@ -101,7 +101,7 @@ function onSaveSetupWizard(event) {
 
 function onPressSaveSetupWizard(event) {
   event.preventDefault();
-  if (isActivateEvent(event)) {
+  if (isEnterKey(event)) {
     hideSetupWizard();
   }
 }

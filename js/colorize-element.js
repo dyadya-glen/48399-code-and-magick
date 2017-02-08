@@ -1,6 +1,7 @@
 'use strict';
 
 window.colorizeElement = function (element, colors, property) {
+  var ENTER_KEY_CODE = 13;
   var currentColor = null;
 
   element.addEventListener('click', onСhangeСurrentColor);
@@ -12,7 +13,7 @@ window.colorizeElement = function (element, colors, property) {
   }
 
   function onPressСhangeСurrentColor(event) {
-    if (window.isActivateEvent(event)) {
+    if (event.keyCode && event.keyCode === ENTER_KEY_CODE) {
       changetColor();
     }
   }
