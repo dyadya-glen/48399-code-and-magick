@@ -56,44 +56,52 @@ function isActivateEvent(event) {
 
 function setupKeydownHendler(event) {
   if (event.keyCode === ESCAPE_KEY_CODE) {
-    onHideSetupWizard();
+    hideSetupWizard();
   }
 }
 
-function onShowSetupWizard(event) {
+function showSetupWizard() {
   setupWizard.classList.remove('invisible');
   setupWizard.setAttribute('aria-hidden', false);
   setupOpenWizard.setAttribute('aria-pressed', true);
   document.addEventListener('keydown', setupKeydownHendler);
 }
 
-function onHideSetupWizard() {
+function onShowSetupWizard() {
+  showSetupWizard();
+}
+
+function hideSetupWizard() {
   setupWizard.classList.add('invisible');
   setupWizard.setAttribute('aria-hidden', true);
   setupOpenWizard.setAttribute('aria-pressed', false);
   document.removeEventListener('keydown', setupKeydownHendler);
 }
 
+function onHideSetupWizard() {
+  hideSetupWizard();
+}
+
 function onPressShowSetupWizard(event) {
   if (isActivateEvent(event)) {
-    onShowSetupWizard(event);
+    showSetupWizard();
   }
 }
 
 function onPressHideSetupWizard(event) {
   if (isActivateEvent(event)) {
-    onHideSetupWizard();
+    hideSetupWizard();
   }
 }
 
 function onSaveSetupWizard(event) {
   event.preventDefault();
-  onHideSetupWizard();
+  hideSetupWizard();
 }
 
 function onPressSaveSetupWizard(event) {
   event.preventDefault();
   if (isActivateEvent(event)) {
-    onHideSetupWizard();
+    hideSetupWizard();
   }
 }

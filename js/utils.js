@@ -2,8 +2,8 @@
 
 window.utils = {
   getRandomElement: function (colors) {
-    var roandomElementIndex = Math.floor(Math.random() * colors.length);
-    return colors[roandomElementIndex];
+    var randomElementIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomElementIndex];
   },
 
   getRandomElementExcept: function (colors, currentColor) {
